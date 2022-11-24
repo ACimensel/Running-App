@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.artun_cimensel_myruns4.activities.ManualEntriesActivity
 import com.example.artun_cimensel_myruns4.activities.MapActivity
 import com.example.artun_cimensel_myruns4.R
+import com.example.artun_cimensel_myruns4.activities.AutoActivity
 
 class StartFragment : Fragment() {
     companion object{
@@ -51,6 +52,11 @@ class StartFragment : Fragment() {
                 intent.putExtra(MapActivity.KEY_ENTRY, false)
                 intent.putExtra(MapActivity.KEY_INPUT, inputsSpinner.selectedItemPosition)
                 intent.putExtra(MapActivity.KEY_ACTIVITY, activitiesSpinner.selectedItemPosition)
+
+                startActivity(intent)
+            }
+            else if(inputsSpinner.selectedItemPosition == 2){ // TODO change with map activity but auto detect exercise
+                val intent = Intent(requireActivity(), AutoActivity::class.java)
 
                 startActivity(intent)
             }
