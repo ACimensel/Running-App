@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.HistoryFragment">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add new"
+            android:layout_margin="4dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete first"
+            android:layout_margin="4dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/deleteall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="delete all"
+            android:layout_margin="4dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello world!" />
+
+</LinearLayout>

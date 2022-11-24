@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SettingsDialog">
+
+    <RadioGroup
+        android:id="@+id/dialog_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <RadioButton
+            android:id="@+id/metric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/metric_kilometers"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"/>
+
+        <RadioButton
+            android:id="@+id/imperial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/imperial_miles"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"/>
+    </RadioGroup>
+
+</FrameLayout>
