@@ -11,11 +11,8 @@ object Globals {
     const val ACTIVITY_ID_STANDING = 0
     const val ACTIVITY_ID_WALKING = 1
     const val ACTIVITY_ID_RUNNING = 2
-    const val ACTIVITY_ID_OTHER = 2
 
-    const val SERVICE_TASK_TYPE_COLLECT = 0
-    const val SERVICE_TASK_TYPE_CLASSIFY = 1
-
+    const val KEY_CLASS_RESULT = "class_result"
     const val ACTION_MOTION_UPDATED = "MYRUNS_MOTION_UPDATED"
 
     const val CLASS_LABEL_STANDING = "standing"
