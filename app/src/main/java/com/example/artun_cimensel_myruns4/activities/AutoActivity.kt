@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.artun_cimensel_myruns4.R
 import com.example.artun_cimensel_myruns4.classifier.Globals
 import com.example.artun_cimensel_myruns4.classifier.SensorService
+import com.example.artun_cimensel_myruns4.database.HistoryEntry
 
 
 class AutoActivity : AppCompatActivity() {
@@ -24,8 +25,33 @@ class AutoActivity : AppCompatActivity() {
     private lateinit var titleLabel: TextView
     private lateinit var sensorManager: SensorManager
     private lateinit var mServiceIntent: Intent
+    private lateinit var historyEntry: HistoryEntry
     private lateinit var mClassifierIntentFilter: IntentFilter
-    private val classifierBroadcastReceiver = ClassifierBroadcastReceiver(Handler(Looper.getMainLooper()))
+
+    private val classifierBroadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            val classifier = intent.getDoubleExtra(Globals.KEY_CLASS_RESULT, -1.0)
+//            historyEntry.updateByInference(classifier)
+//            historyEntry.activityType = blah
+
+            if(classifier == 0.0){
+                titleLabel.text = "You are standing."
+                historyEntry.activityType = 2
+            }
+            else if(classifier == 1.0){
+                titleLabel.text = "You are walking."
+                historyEntry.activityType = 1
+            }
+            else if(classifier == 2.0){
+                titleLabel.text = "You are running."
+                historyEntry.activityType = 0
+            }
+            else{
+                titleLabel.text = "Unknown."
+
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,8 +62,9 @@ class AutoActivity : AppCompatActivity() {
         zLabel = findViewById(R.id.zval)
         titleLabel = findViewById(R.id.textView)
 
-        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+        historyEntry = HistoryEntry()
 
+        sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         mClassifierIntentFilter = IntentFilter()
         mClassifierIntentFilter.addAction(Globals.ACTION_MOTION_UPDATED)
@@ -72,25 +99,32 @@ class AutoActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    class ClassifierBroadcastReceiver(handler: Handler) : BroadcastReceiver() {
-        private val handler : Handler // Handler used to execute code on the UI thread
+//    class ClassifierBroadcastReceiver(handler: Handler) : BroadcastReceiver() {
+//        private val handler : Handler // Handler used to execute code on the UI thread
+//
+//        init {
+//            this.handler = handler
+//        }
+//
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            val classifier = intent?.getDoubleExtra(Globals.KEY_CLASS_RESULT, -1.0)
+//
+//
+//            // Post the UI updating code to our Handler
+//            handler.post(object : Runnable {
+//                override fun run() {
+//
+////              Log.d("DEBUG:", "____________________onReceive $classifier")
+//                    Toast.makeText(context, classifier.toString(), Toast.LENGTH_SHORT).show() // TODO remove
+//
+////                if(classifier == 0.0)
+////                    titleLabel.text = "You are idle."
+//
+////                    handler.postDelayed(this, 1000)
+//                }
+//            })
+//
+//            }
+//        }
 
-        init {
-            this.handler = handler
-        }
-
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val classifier = intent?.getDoubleExtra(Globals.KEY_CLASS_RESULT, -1.0)
-
-
-            // Post the UI updating code to our Handler
-            handler.post {
-//            Log.d("DEBUG:", "____________________onReceive $classifier")
-                Toast.makeText(context, classifier.toString(), Toast.LENGTH_SHORT).show() // TODO remove
-
-//                if(classifier == 0.0)
-//                    titleLabel.text = "You are idle."
-            }
-        }
-    }
 }
