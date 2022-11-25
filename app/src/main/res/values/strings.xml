@@ -36,4 +36,8 @@
     <string name="calories">Calories</string>
     <string name="heart_rate">Heart Rate</string>
     <string name="delete">Delete</string>
+    <string name="ui_sensor_service_toast_success_file_updated">Data file updated.</string>
+    <string name="ui_sensor_service_toast_success_file_created">Data file created.</string>
+    <string name="ui_sensor_service_notification_title">MyRuns Collector</string>
+    <string name="ui_sensor_service_notification_content">Recording your activity data now</string>
 </resources>
